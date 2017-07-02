@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import Class from './Class';
 
 class App extends Component {
   render() {
+    let classes = [
+      {
+        name: 'Backtrace::Frame',
+        methods: [
+          {
+            name: 'file',
+            sig: 'Backtrace::Frame:D --> Str',
+          },
+          {
+            name: 'line',
+            sig: 'Backtrace::Frame:D --> Int',
+          }
+        ]
+      }
+    ];
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {classes.map(c => <Class methods={c.methods} name={c.name}/>)}
       </div>
     );
   }
