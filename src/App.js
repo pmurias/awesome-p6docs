@@ -1,33 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-import Type from './Type';
+import TypeList from './TypeList';
+import DocsForType from './DocsForType';
 
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-const frame = require('./Frame.json');
-const baggy = require('./Baggy.json');
-const types = {'Backtrace::Frame': frame, 'Baggy': baggy};
+const typesData = require('./types.json');
+const types = {};
 
-class DocsForType extends Component {
-  render() {
-    const type = types[this.props.match.params.name];
-    return <Type methods={type.methods} name={type.name} desc={type.desc} kind={type.kind}/>
-  }
+for (let type of typesData.types) {
+  types[type.name] = type;
 }
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-          <div>
-            <div><Link to="/type/Baggy">Baggy</Link></div>
-            <div><Link to="/type/Backtrace::Frame">Backtrace::Frame</Link></div>
-            <Route path="/type/:name" component={DocsForType}></Route>
-          </div>
-      </Router>
-    );
-  }
+function App(props) {
+  return (
+    <Router>
+        <div>
+          <TypeList types={types}/>
+          <Route path="/type/:name" render={props => <DocsForType types={types} {...props}/>}/>
+        </div>
+    </Router>
+  );
 }
 
 

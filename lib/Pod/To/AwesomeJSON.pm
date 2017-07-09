@@ -76,7 +76,7 @@ sub grok-unit([Pod::Block::Named $pod where $pod.name eq 'pod']) {
         $current-method = Method.new(name => ~$0 , desc => $content);
         $methods.push($current-method);
       } else {
-        say("heading: ", $part.perl);
+        note("heading: ", $part.perl);
       }
     } elsif $part ~~ Pod::Block::Code|Pod::Block::Para {
         if defined($content) {

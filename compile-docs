@@ -1,0 +1,7 @@
+use JSON::Fast;
+my @types;
+for @*ARGS -> $file {
+  my $doc = run('perl6-m', '-I', 'lib', '--doc=AwesomeJSON', $file, :out);
+  @types.push(from-json $doc.out.slurp);
+}
+say(to-json {types=>@types});
