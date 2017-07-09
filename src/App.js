@@ -17,7 +17,7 @@ function App(props) {
   return (
     <Router>
         <div>
-          <TypeList types={types}/>
+          <Route exact path="/" render={props => <TypeList types={types}/>}/>
           <Route path="/type/:name" render={props => <DocsForType types={types} {...props}/>}/>
         </div>
     </Router>
