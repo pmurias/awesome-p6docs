@@ -3,26 +3,14 @@ import './App.css';
 
 import Class from './Class';
 
+const frame = require('./Frame.json');
+const classes = [frame];
+
 class App extends Component {
   render() {
-    let classes = [
-      {
-        name: 'Backtrace::Frame',
-        methods: [
-          {
-            name: 'file',
-            sig: 'Backtrace::Frame:D --> Str',
-          },
-          {
-            name: 'line',
-            sig: 'Backtrace::Frame:D --> Int',
-          }
-        ]
-      }
-    ];
     return (
       <div className="App">
-        {classes.map(c => <Class methods={c.methods} name={c.name}/>)}
+        {classes.map((c,idx) => <Class key={idx} methods={c.methods} name={c.name} desc={c.desc}/>)}
       </div>
     );
   }
