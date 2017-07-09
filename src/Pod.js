@@ -15,6 +15,8 @@ class Pod extends Component {
       return <span key={key}>{this.renderPod(contents.contents, 0)}</span>
     } else if (contents.type === 'L') {
       return <a key={key}>{this.renderPod(contents.contents, 0)}</a>
+    } else if (contents.type === 'B') {
+      return <strong key={key}>{this.renderPod(contents.contents, 0)}</strong>
     }
   }
   render() {
