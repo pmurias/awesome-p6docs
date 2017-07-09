@@ -63,7 +63,7 @@ sub grok-unit([Pod::Block::Named $pod where $pod.name eq 'pod']) {
   for $pod.contents -> $part {
 
     if $part ~~ Pod::Block::Named && $part.name eq 'TITLE' {
-      to-text($part.contents) ~~ /(class) \s* (.*)/;
+      to-text($part.contents) ~~ /(class|role) \s* (.*)/;
       $kind = ~$0;
       $name = ~$1;
     } elsif $part ~~ Pod::Block::Named && $part.name eq 'SUBTITLE' {

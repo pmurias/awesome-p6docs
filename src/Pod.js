@@ -6,15 +6,15 @@ class Pod extends Component {
     if (typeof contents === 'string') {
       return contents;
     } else if (contents instanceof Array) {
-      return <div key={key}>{contents.map((chunk,idx) => this.renderPod(chunk, idx))}</div>
+      return <span key={key}>{contents.map((chunk,idx) => this.renderPod(chunk, idx))}</span>
     } else if (contents.code) {
       return <pre key={key}>{contents.code}</pre>
     } else if (contents.para) {
       return this.renderPod(contents.para, key);
     } else if (contents.type === 'C') {
-      return <span key={key}>{contents.contents}</span>
+      return <span key={key}>{this.renderPod(contents.contents, 0)}</span>
     } else if (contents.type === 'L') {
-      return <a key={key}>{contents.contents}</a>
+      return <a key={key}>{this.renderPod(contents.contents, 0)}</a>
     }
   }
   render() {
